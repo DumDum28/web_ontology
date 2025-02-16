@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Province Search</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body { font-family: Arial, sans-serif; background-color: #f0f8ff; margin: 40px; }
+            h1 { color: #333366; }
+            form { margin-bottom: 20px; }
+            input[type="text"] { padding: 8px; width: 300px; margin-right: 10px; }
+            input[type="submit"] { padding: 8px 16px; background-color: #333366; color: white; border: none; cursor: pointer; }
+            a { text-decoration: none; margin: 0 5px; color: #333366; }
+            ul { background-color: #e6f0ff; padding: 20px; border-radius: 8px; }
+            li { margin: 5px 0; }
+            p { font-weight: bold; }
+        </style>
+    </head>
+    <body>
+        <h1>Province Search</h1>
+        <form method="post">
+            <input type="text" name="query" placeholder="Enter province name">
+            <input type="hidden" name="lang" value="{{ lang }}">
+            <input type="submit" value="Search">
+        </form>
+        <div>
+            <p>Current Language: {{ 'ไทย' if lang == 'th' else 'English' }}</p>
+            <a href="?lang=th">🇹🇭 ไทย</a> |
+            <a href="?lang=en">🇬🇧 English</a>
+        </div>
+        {% if results %}
+            <h2>Results:</h2>
+            <ul>
+            {% for result in results %}
+               <li>{{ result }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    </body>
+</html>
